@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:chicago.suntimes.com)",
+      "WebFetch(domain:loyolaphoenix.com)",
+      "WebFetch(domain:blockclubchicago.org)"
+    ]
+  }
+}
