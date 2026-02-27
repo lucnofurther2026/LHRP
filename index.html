@@ -204,6 +204,30 @@
       max-width: 650px;
     }
 
+    /* STICKY CTA */
+    .sticky-cta {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--red);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      z-index: 100;
+      transform: translateY(-100%);
+      transition: transform 0.25s;
+      border-bottom: 3px solid var(--white);
+    }
+
+    .sticky-cta.visible {
+      transform: translateY(0);
+    }
+
+    .sticky-cta .email-btn {
+      font-size: 1rem;
+      padding: 0.5rem 2rem;
+    }
+
     /* FOOTER */
     footer {
       text-align: center;
@@ -227,7 +251,7 @@
     <h2>Tell Loyola This Is Wrong</h2>
     <p>Email Loyola's President and their Associate VP of Neighborhood Initiatives. Let them know Rogers Park deserves
       better.</p>
-    <a class="email-btn"
+    <a class="email-btn" id="email-btn"
       onclick="window.goatcounter.count({path:'click-email-loyola', event:true})"
       href="mailto:president@luc.edu,jclark7@luc.edu?subject=Rogers%20Park%20Deserves%20Better%20%E2%80%94%201234%20W.%20Loyola%20Ave&body=Dear%20President%20Reed%20and%20Jennifer%20Clark%2C%0A%0AI%20am%20writing%20to%20express%20my%20deep%20concern%20about%20Loyola%20University%27s%20demolition%20of%201224-1234%20W.%20Loyola%20Ave.%20and%20the%20displacement%20of%20longtime%20residents%20and%20beloved%20small%20businesses%20including%20Archie%27s%20Cafe%2C%20Roman%20Susan%20Art%20Gallery%2C%20and%20Edge%20Art.%0A%0AThe%20Rogers%20Park%20community%20deserved%20a%20transparent%20and%20inclusive%20process.%20Demolishing%20a%20nearly%20100-year-old%20building%20to%20create%20a%20vacant%20green%20space%20without%20clear%20development%20plans%20is%20unacceptable.%0A%0AI%20urge%20Loyola%20to%20meaningfully%20engage%20with%20the%20Rogers%20Park%20community%20on%20all%20future%20development%20plans.%0A%0ASincerely%2C%0A%5BYour%20Name%5D">
       ✉ Email Loyola Now
@@ -437,9 +461,18 @@
 
   <div class="context-section" style="text-align: center;">
     <h2>Get In Touch</h2>
+    <p style="margin: 0 auto 1.5rem; max-width: 80rem;">Getting Loyola to start listening is a team effort. Please reach out with any ideas, feedback or relevant info!</p>
     <a class="email-btn" href="mailto:luc.no.further.2026@gmail.com"
       onclick="window.goatcounter.count({path:'click-contact-email', event:true})"
       style="font-size: 1rem; padding: 0.8rem 2rem; border-color: var(--white);">✉ luc.no.further.2026@gmail.com</a>
+  </div>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="email-btn"
+      onclick="window.goatcounter.count({path:'click-email-loyola', event:true})"
+      href="mailto:president@luc.edu,jclark7@luc.edu?subject=Rogers%20Park%20Deserves%20Better%20%E2%80%94%201234%20W.%20Loyola%20Ave&body=Dear%20President%20Reed%20and%20Jennifer%20Clark%2C%0A%0AI%20am%20writing%20to%20express%20my%20deep%20concern%20about%20Loyola%20University%27s%20demolition%20of%201224-1234%20W.%20Loyola%20Ave.%20and%20the%20displacement%20of%20longtime%20residents%20and%20beloved%20small%20businesses%20including%20Archie%27s%20Cafe%2C%20Roman%20Susan%20Art%20Gallery%2C%20and%20Edge%20Art.%0A%0AThe%20Rogers%20Park%20community%20deserved%20a%20transparent%20and%20inclusive%20process.%20Demolishing%20a%20nearly%20100-year-old%20building%20to%20create%20a%20vacant%20green%20space%20without%20clear%20development%20plans%20is%20unacceptable.%0A%0AI%20urge%20Loyola%20to%20meaningfully%20engage%20with%20the%20Rogers%20Park%20community%20on%20all%20future%20development%20plans.%0A%0ASincerely%2C%0A%5BYour%20Name%5D">
+      ✉ Email Loyola Now
+    </a>
   </div>
 
   <footer>
@@ -459,6 +492,12 @@
         verb.style.opacity = 1;
       }, 400);
     }, 2500);
+
+    const emailBtn = document.getElementById('email-btn');
+    const stickyCta = document.getElementById('sticky-cta');
+    new IntersectionObserver(([e]) => {
+      stickyCta.classList.toggle('visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+    }).observe(emailBtn);
   </script>
   <script data-goatcounter="https://lhrp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
